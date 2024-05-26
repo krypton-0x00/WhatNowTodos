@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "name": "todo-app",
+  "builds": [
+    {
+      "src": "FrontEnd/package.json",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "BackEnd/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "BackEnd/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "FrontEnd/src/$1"
+    }
+  ],
+  "env": {
+    "API_URL": "http://localhost:4000/api"
+  },
+  "regions": ["all"]
+}
